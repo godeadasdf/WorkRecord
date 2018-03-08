@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="陈晓杰"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/fontDarkBlack"/>
+
+        <TextView
+            android:id="@+id/tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="13241231222"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/fontDarkBlack"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView style="@style/listItemTitle"
+            android:text="上班打卡"/>
+        <TextView style="@s"/>
+    </LinearLayout>
+
+</LinearLayout>

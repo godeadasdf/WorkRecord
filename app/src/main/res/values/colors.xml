@@ -10,4 +10,8 @@
     <color name="tabTextSelected">#484D5D</color>
     <color name="tabText">#666666</color>
     <color name="tabIndicator">#484D5D</color>
+    <!---                font      -->
+    <color name="fontDarkBlack">#333333</color>
+    <color name="fontLightBlack">#666666</color>
+    <color name="fontBlack">#292929</color>
 </resources>

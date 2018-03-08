@@ -12,3 +12,11 @@ class RecordDriverAdapter : BaseQuickAdapter<RecordDriverItem, BaseViewHolder> {
     override fun convert(helper: BaseViewHolder?, item: RecordDriverItem?) {
     }
 }
+
+class RecordRoadAdapter : BaseQuickAdapter<RecordDriverItem, BaseViewHolder> {
+
+    constructor(layoutResId: Int, data: MutableList<RecordDriverItem>?) : super(layoutResId, data)
+
+    override fun convert(helper: BaseViewHolder?, item: RecordDriverItem?) {
+    }
+}

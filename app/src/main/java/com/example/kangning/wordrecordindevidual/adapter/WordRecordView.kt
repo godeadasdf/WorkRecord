@@ -11,6 +11,10 @@ import android.widget.LinearLayout
 import com.example.kangning.wordrecordindevidual.R
 import android.widget.TextView
 import android.graphics.Typeface
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class WordRecordView : FrameLayout {
@@ -21,7 +25,18 @@ class WordRecordView : FrameLayout {
     private lateinit var tabLayout: TabLayout
     private lateinit var pager: ViewPager
 
-    private lateinit var tabList: ArrayList<String>
+    private lateinit var driverList: RecyclerView
+    private lateinit var roadList: RecyclerView
+    private var driverAdapter = RecordDriverAdapter(0, Collections.emptyList())
+    private var roadAdapter = RecordRoadAdapter(0, Collections.emptyList())
+    private lateinit var pagerAdapter: TabPagerAdapter
+
+    private lateinit var driverRecord: RecyclerView
+    private lateinit var roadRecord: RecyclerView
+
+    private lateinit var tabList: MutableList<String>
+    private lateinit var views: MutableList<View>
+
 
     constructor(context: Context) : super(context) {
         initView(context)
@@ -92,6 +107,15 @@ class WordRecordView : FrameLayout {
 
     private fun initPager() {
         pager = wholePage.findViewById(R.id.pager)
+        driverList = RecyclerView(context)
+        roadList = RecyclerView(context)
+        driverList.layoutManager = LinearLayoutManager(context)
+        roadList.layoutManager = LinearLayoutManager(context)
+        views = ArrayList()
+        views.add(roadList)
+        views.add(driverList)
+        pagerAdapter = TabPagerAdapter(views)
+        pager.adapter = pagerAdapter
     }
 
 }

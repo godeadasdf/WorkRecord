@@ -2,13 +2,14 @@ package com.example.kangning.wordrecordindevidual.adapter
 
 import android.support.v4.view.PagerAdapter
 import android.view.View
+import android.view.ViewGroup
 
 class TabPagerAdapter : PagerAdapter {
 
-    private lateinit var labels: MutableList<String>
+    private var views: MutableList<View>
 
-    constructor(labels: MutableList<String>) {
-        this.labels = labels
+    constructor(views: MutableList<View>) : super() {
+        this.views = views
     }
 
     override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
@@ -16,6 +17,15 @@ class TabPagerAdapter : PagerAdapter {
     }
 
     override fun getCount(): Int {
-        return labels.size
+        return views.size
+    }
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        container.addView(views[position])
+        return views[position]
+    }
+
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any?) {
+        container.removeView(views[position])
     }
 }
