@@ -5,15 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 
 class TabPagerAdapter : PagerAdapter {
+    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+        return view == `object`
+    }
 
     private var views: MutableList<View>
 
     constructor(views: MutableList<View>) : super() {
         this.views = views
-    }
-
-    override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
-        return view == `object`
     }
 
     override fun getCount(): Int {
@@ -25,7 +24,4 @@ class TabPagerAdapter : PagerAdapter {
         return views[position]
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any?) {
-        container.removeView(views[position])
-    }
 }

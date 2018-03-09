@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.kangning.wordrecordindevidual.R
 import com.example.kangning.wordrecordindevidual.adapter.RecordDriverAdapter
@@ -18,13 +18,15 @@ import com.example.kangning.wordrecordindevidual.adapter.RecordRoadAdapter
 import com.example.kangning.wordrecordindevidual.adapter.TabPagerAdapter
 import com.example.kangning.wordrecordindevidual.model.RecordDriverItem
 import com.example.kangning.wordrecordindevidual.model.RecordRoadItem
+import kotlinx.android.synthetic.main.workrecord_layout_wholepage.view.*
+import java.util.*
 
 
 class WordRecordView : FrameLayout {
 
     private lateinit var inflater: LayoutInflater
 
-    private lateinit var wholePage: LinearLayout
+    private lateinit var wholePage: RelativeLayout
     private lateinit var tabLayout: TabLayout
     private lateinit var pager: NoScrollViewPager
     private lateinit var pagerAdapter: TabPagerAdapter
@@ -37,6 +39,11 @@ class WordRecordView : FrameLayout {
     private lateinit var tabList: MutableList<String>
     private lateinit var views: MutableList<View>
 
+    private lateinit var dateSelected: Date
+    //出勤人数
+    private var roadNum = 0
+    private var driverNum = 0
+
     constructor(context: Context) : super(context) {
         initView(context)
     }
@@ -47,26 +54,38 @@ class WordRecordView : FrameLayout {
 
     private fun initView(context: Context) {
         inflater = LayoutInflater.from(context);
-        wholePage = inflater.inflate(R.layout.workrecord_layout_wholepage, null, false) as LinearLayout
+        wholePage = inflater.inflate(R.layout.workrecord_layout_wholepage, null, false) as RelativeLayout
         val button = wholePage.findViewById(R.id.timeChoose) as Button
         button.setOnClickListener({
             showDatePicker()
         })
+        dateSelected = Date()
         initTab()
         initPager()
         this.addView(wholePage)
     }
 
-    private fun showDatePicker() {
+    fun initData() {
+        datePickerListener?.onDatePicked(dateSelected, if (pager.currentItem === 0) Character.ROAD else Character.DRIVER)
+    }
 
+    interface DatePickerListener {
+        fun onDatePicked(date: Date, character: Character)  //1 代表路面
+    }
+
+    var datePickerListener: DatePickerListener? = null
+
+    private fun showDatePicker() {
+        //todo 选择时间逻辑 暂且置为做出了选择
+        datePickerListener?.onDatePicked(dateSelected, if (pager.currentItem === 0) Character.ROAD else Character.DRIVER)
     }
 
     private fun initTab() {
         tabLayout = wholePage.findViewById(R.id.tab)
         tabLayout.post({ TabUtil.setIndicator(tabLayout, 35, 35) })
         tabList = ArrayList()
-        tabList.add("维修仓运维")
-        tabList.add("外包司机")
+        tabList.add("维修仓运维${roadNum}人")
+        tabList.add("外包司机${driverNum}人")
         tabLayout.addTab(tabLayout.newTab().setText(tabList[0]))
         tabLayout.addTab(tabLayout.newTab().setText(tabList[1]))
         for (i in 0 until tabLayout.tabCount) {
@@ -80,6 +99,7 @@ class WordRecordView : FrameLayout {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 updateTabTextView(tab, true)
                 pager.currentItem = tab.position
+                datePickerListener?.onDatePicked(dateSelected, if (pager.currentItem === 0) Character.ROAD else Character.DRIVER)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -144,11 +164,17 @@ class WordRecordView : FrameLayout {
 
     fun setDriverData(list: List<RecordDriverItem>) {
         driverAdapter.setNewData(list)
+        tabLayout.getTabAt(1)?.text = "外包司机${list.size}人"
     }
 
     fun setRoadData(list: List<RecordRoadItem>) {
         roadAdapter.setNewData(list)
+        tabLayout.getTabAt(0)?.text = "维修仓运维${list.size}人"
     }
 
+    enum class Character(val category: Int) {
+        ROAD(0x00001),
+        DRIVER(0x00002)
+    }
 
 }

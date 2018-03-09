@@ -8,6 +8,7 @@
     tools:context="com.example.kangning.wordrecordindevidual.MainActivity">
 
     <com.example.kangning.wordrecordindevidual.ui.WordRecordView
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
