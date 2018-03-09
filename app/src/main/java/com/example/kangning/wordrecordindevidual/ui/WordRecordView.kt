@@ -1,23 +1,22 @@
 package com.example.kangning.wordrecordindevidual.ui
 
 import android.content.Context
+import android.graphics.Typeface
 import android.support.design.widget.TabLayout
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.example.kangning.wordrecordindevidual.R
 import android.widget.TextView
-import android.graphics.Typeface
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import com.example.kangning.wordrecordindevidual.R
 import com.example.kangning.wordrecordindevidual.adapter.RecordDriverAdapter
 import com.example.kangning.wordrecordindevidual.adapter.RecordRoadAdapter
 import com.example.kangning.wordrecordindevidual.adapter.TabPagerAdapter
 import com.example.kangning.wordrecordindevidual.model.RecordDriverItem
 import com.example.kangning.wordrecordindevidual.model.RecordRoadItem
-import kotlin.collections.ArrayList
 
 
 class WordRecordView : FrameLayout {
@@ -134,5 +133,15 @@ class WordRecordView : FrameLayout {
         pagerAdapter = TabPagerAdapter(views)
         pager.adapter = pagerAdapter
     }
+
+    fun setDriverData(list: List<RecordDriverItem>) {
+        driverAdapter.setNewData(list)
+    }
+
+    fun setRoadData(list: List<RecordRoadItem>) {
+        roadAdapter.setNewData(list)
+    }
+
+    
 
 }
