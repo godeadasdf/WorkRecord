@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -36,7 +37,6 @@ class WordRecordView : FrameLayout {
     private lateinit var tabList: MutableList<String>
     private lateinit var views: MutableList<View>
 
-
     constructor(context: Context) : super(context) {
         initView(context)
     }
@@ -48,9 +48,17 @@ class WordRecordView : FrameLayout {
     private fun initView(context: Context) {
         inflater = LayoutInflater.from(context);
         wholePage = inflater.inflate(R.layout.workrecord_layout_wholepage, null, false) as LinearLayout
+        val button = wholePage.findViewById(R.id.timeChoose) as Button
+        button.setOnClickListener({
+            showDatePicker()
+        })
         initTab()
         initPager()
         this.addView(wholePage)
+    }
+
+    private fun showDatePicker() {
+
     }
 
     private fun initTab() {
@@ -142,6 +150,5 @@ class WordRecordView : FrameLayout {
         roadAdapter.setNewData(list)
     }
 
-    
 
 }
