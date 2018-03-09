@@ -4,7 +4,7 @@ data class RecordDriverItem(val name: String,
                             val telephone: String,
                             val onWorkTime: String,
                             val offWorkTime: String,
-                            val bikeSearch: Int,
+                            val bikeRecycle: Int,
                             val bikeDistribute: Int,
                             val bikeIn: Int,
                             val bikeOut: Int)

@@ -80,10 +80,10 @@
 
             <TextView
                 style="@style/listItemTitle"
-                android:text="车辆查询:" />
+                android:text="车辆回收:" />
 
             <TextView
-                android:id="@+id/searchNum"
+                android:id="@+id/recycleNum"
                 style="@style/listItemNumber"
                 android:text="120" />
         </LinearLayout>
@@ -111,12 +111,27 @@
 
             <TextView
                 style="@style/listItemTitle"
-                android:text="坏车堆放:" />
+                android:text="车辆入库:" />
 
             <TextView
-                android:id="@+id/clusterNum"
+                android:id="@+id/outNum"
                 style="@style/listItemNumber"
                 android:text="480" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/listItemTitle"
+                android:text="车辆出库:" />
+
+            <TextView
+                android:id="@+id/inNum"
+                style="@style/listItemNumber"
+                android:text="362" />
         </LinearLayout>
 
     </LinearLayout>
