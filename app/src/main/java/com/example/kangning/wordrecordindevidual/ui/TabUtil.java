@@ -1,4 +1,4 @@
-package com.example.kangning.wordrecordindevidual.adapter;
+package com.example.kangning.wordrecordindevidual.ui;
 
 import android.content.res.Resources;
 import android.support.design.widget.TabLayout;

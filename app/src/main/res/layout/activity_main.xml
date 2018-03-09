@@ -7,9 +7,9 @@
     android:background="@color/pureBlack"
     tools:context="com.example.kangning.wordrecordindevidual.MainActivity">
 
-    <com.example.kangning.wordrecordindevidual.adapter.WordRecordView
+    <com.example.kangning.wordrecordindevidual.ui.WordRecordView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.kangning.wordrecordindevidual.adapter.WordRecordView>
+    </com.example.kangning.wordrecordindevidual.ui.WordRecordView>
 
 </android.support.constraint.ConstraintLayout>
